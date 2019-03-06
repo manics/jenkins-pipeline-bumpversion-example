@@ -31,19 +31,19 @@ pipeline {
       when {
         expression { env.GIT_BRANCH == 'origin/master' }
       }
-      steps {
-        //unstash 'workspace'
-        input {
-          message "Would you like to tag this repository?"
-          ok "Tag and push"
-          parameters {
-            choice(
-              name: 'BUMP',
-              choices: "major\nminor\npatch\nrelease",
-              description: 'Component to bump'
-              )
-            }
+      input {
+        message "Would you like to tag this repository?"
+        ok "Tag and push"
+        parameters {
+          choice(
+            name: 'BUMP',
+            choices: "major\nminor\npatch\nrelease",
+            description: 'Component to bump'
+            )
           }
+        }
+        steps {
+          //unstash 'workspace'
           withCredentials([sshUserPrivateKey(credentialsId: 'github-push', keyFileVariable: 'keyfile')]) {
             sh 'mkdir -p ~/.ssh && cp ${keyfile} ~/.ssh/id_rsa'
           }
