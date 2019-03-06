@@ -48,7 +48,7 @@ pipeline {
             sh 'mkdir -p ~/.ssh && cp ${keyfile} ~/.ssh/id_rsa'
           }
           // Change https:// to SSH URL so we can push with a deploy key
-          sh 'git remote set-url origin `git remote get-url origin | sed -re "s%.+/([^/]+)/([^/]+)$%git@github.com:\1/\2%"`'
+          sh 'git remote set-url origin `git remote get-url origin | sed -re "s%.+/([^/]+)/([^/]+)$%git@github.com:\\1/\\2%"`'
           sh 'bumpversion ${BUMP}'
           sh 'git push origin master'
         }
