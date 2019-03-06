@@ -19,6 +19,7 @@ pipeline {
         sh 'git config user.email jenkins@localhost'
         echo 'Current version:'
         sh 'grep "Version: " README.md'
+        sh 'env'
         //stash 'workspace'
       }
     }
