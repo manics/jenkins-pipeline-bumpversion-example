@@ -1,7 +1,8 @@
-FROM docker.io/python:3.7-alpine
+FROM docker.io/openjdk:8-jdk-alpine
 RUN apk add --no-cache \
         git \
-        openssh-client && \
+        openssh-client \
+        python3 && \
     python3 -m pip install bump2version
 RUN mkdir ~/.ssh && \
     chmod 700 ~/.ssh && \
