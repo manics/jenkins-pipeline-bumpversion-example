@@ -54,7 +54,9 @@ pipeline {
         //sh 'bumpversion ${BUMP}'
         sh 'bumpversion minor'
         sh 'git log -p -2'
-        sh 'git push origin master'
+        //sh 'git push origin master'
+        sh 'git push origin refs/remotes/origin/master'
+        sh 'git push origin --tags'
       }
     }
   }
