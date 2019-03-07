@@ -51,7 +51,9 @@ pipeline {
         sh 'git show-ref'
         // Change https:// to SSH URL so we can push with a deploy key
         sh 'git remote set-url origin `git remote get-url origin | sed -re "s%.+/([^/]+)/([^/]+)$%git@github.com:\\1/\\2%"`'
-        sh 'bumpversion ${BUMP}'
+        //sh 'bumpversion ${BUMP}'
+        sh 'bumpversion minor'
+        sh 'git log -p -2'
         sh 'git push origin master'
       }
     }
